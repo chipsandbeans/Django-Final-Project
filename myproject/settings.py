@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-r=c@_dwx-*0fhmr0hqrdf^1i^v!a7niqg9o30zii=gl4m2$k)%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-chipsandbea-djangofinal-d1z4vumxgtj.ws.codeinstitute-ide.net', 'https://my-frenly-pt-eb54dfd3fc9e.herokuapp.com']
+ALLOWED_HOSTS = ['8000-chipsandbea-djangofinal-d1z4vumxgtj.ws.codeinstitute-ide.net', 'my-frenly-pt-eb54dfd3fc9e.herokuapp.com']
 
 CSRF_TRUSTED_ORIGINS = ['https://*.codeinstitute-ide.net',
 'https://*.herokuapp.com']
