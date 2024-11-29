@@ -9,6 +9,8 @@ class Meal(models.Model):
     fats = models.PositiveIntegerField()
     # Timestamp automatically saves time and date. 
     meal_time = models.DateTimeField(auto_now_add=True)
+    # Links to the user who created the meal
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def total_calories(self):
         return (self.protein *4) + (self.carbs * 4) + (self.fats * 9)
