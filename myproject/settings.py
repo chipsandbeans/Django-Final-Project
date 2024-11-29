@@ -30,12 +30,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['8000-chipsandbea-djangofinal-d1z4vumxgtj.ws.codeinstitute-ide.net', 'my-frenly-pt-eb54dfd3fc9e.herokuapp.com']
 
-CSRF_TRUSTED_ORIGINS = ['https://*.codeinstitute-ide.net',
-'https://*.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://*.codeinstitute-ide.net', 'https://*.herokuapp.com']
 
 # Application definition
 
