@@ -20,8 +20,21 @@
                             </div>
                             <a href="#" class="post-link">
                                 <h2 class="card-title">{{ meal.title }}</h2>
+                                <p class="card-text">
+                                    Protein: {{ meal.protein }}g, 
+                                    Carbs: {{ meal.carbs }}g, 
+                                    Fats: {{ meal.fats }}g
+                                </p>
+                                <p class="card-text">
+                                    Total Calories: {{ meal.total_calories }} kcal
+                                </p>
+                                <p class="card-text">
+                                    Meal Time: {{ meal.meal_time }}
+                                </p>
+                                <p class="card-text">
+                                    Created by: {{ meal.user.username }}
+                                </p>
                             </a>
-
                             <hr />
                             <p class="card-text text-muted h6">{{ meal.created_on}}
                             </p>
