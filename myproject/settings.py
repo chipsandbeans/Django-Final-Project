@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'cloudinary',
     'crm',
+    'about_us',
 ]
 
 MIDDLEWARE = [
