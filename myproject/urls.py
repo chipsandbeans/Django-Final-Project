@@ -25,4 +25,5 @@ urlpatterns = [
     # path('', include('crm.urls'), name='home'),
     path('', include('crm.urls')),
     # path('', lambda request: redirect('meal-list')), 
+    path("accounts/", include("allauth.urls")),
 ]
