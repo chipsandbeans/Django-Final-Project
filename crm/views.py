@@ -88,7 +88,7 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
 
-class WeightCreateView(CreateView):
+class WeightCreateView(LoginRequiredMixin, CreateView):
     model = WeightTracking
     form_class = WeightTrackingForm
     template_name = 'add_weight.html'
@@ -105,3 +105,16 @@ class WeightListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return WeightTracking.objects.filter(user=self.request.user).order_by('-created_on')
+
+class WeightUpdateView(LoginRequiredMixin, UpdateView):
+    model = WeightTracking
+    form_class = WeightTrackingForm
+    template_name = 'update_weight.html'
+
+    # Only users can edit their weight
+    def get_queryset(self):
+        return WeightTracking.objects.filter(user=self.request.user)
+
+    # Return to weight list once updated
+    def get_success_url(self):
+        return reverse_lazy('weight_list')
