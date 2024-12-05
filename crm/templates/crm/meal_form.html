@@ -3,6 +3,10 @@
 <head>
     <title>Create Meal</title>
 </head>
+{% extends 'base.html' %}
+
+{% block content %}
+
 <body>
     <h1>Create a New Meal</h1>
     <form method="post">
@@ -13,3 +17,5 @@
     <a href="{% url 'home' %}">Back to Meal List</a>
 </body>
 </html>
+
+{% endblock %}
