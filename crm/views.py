@@ -29,10 +29,22 @@ class MealUpdateView(UpdateView):
     template_name = 'crm/meal_form.html'
     fields = ['title', 'protein', 'carbs', 'fats']
     success_url = reverse_lazy('home')
-
+    
+    # Makes sure only the meal creator can update the meal
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        if obj.user != self.request.user:
+            raise PermissionDenied("You are not authorized to update this meal.")
+        return obj
+    
+    # Adds a message after the meal is updated
     def form_valid(self, form):
-        form.instance.user = self.request.user 
+        messages.success(self.request, 'Meal updated successfully.')
         return super().form_valid(form)
+
+    # Redirects to the meal detail page
+    def get_success_url(self):
+        return reverse_lazy('meal-detail', kwargs={'pk': self.object.pk})
 
 class MealDeleteView(DeleteView):
     model = Meal
