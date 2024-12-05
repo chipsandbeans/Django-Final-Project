@@ -14,21 +14,18 @@
 
 {% block content %}
 
-<body>
-    <h1>Meal List</h1>
+<h1>Meals</h1>
+{% if user.is_authenticated %}
+<a href="{% url 'meal-create' %}">Add New Meal</a>
+{% endif %}
+<ul>
     {% for meal in meals %}
-    <h2>{{meal.title}}</h2>
-    <p>Protein: {{ meal.protein }}g</p>
-    <p>Carbs: {{ meal.carbs }}g</p>
-    <p>Fats: {{ meal.fats }}g</p>
-    <p>Total Calories: {{ meal.total_calories }} kcal</p>
-    <p>Created by: {{ meal.user.username }}</p>
-    <p>Meal time: {{ meal.meal_time }}</p>
-    <hr>
-    {% empty %}
-    <p>No meals found.</p>
+    <li>
+        <a href="{% url 'meal-detail' meal.pk %}">{{ meal.title }}</a>
+        ({{ meal.total_calories }} Calories)
+    </li>
     {% endfor %}
-</body>
+</ul>
 
 {% endblock %}
 
