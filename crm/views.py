@@ -1,8 +1,9 @@
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import redirect, render
 from .models import Meal
 
 class MealListView(LoginRequiredMixin, ListView):
@@ -18,6 +19,12 @@ class MealDetailView(DetailView):
     model = Meal
     template_name = 'crm/meal_detail.html'
     context_object_name = 'meal'
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        if obj.user != self.request.user:
+            raise PermissionDenied("You are not authorized to view this meal.")
+        return obj
 
 class MealCreateView(CreateView):
     model = Meal
@@ -65,3 +72,17 @@ class MealDeleteView(DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, 'Meal deleted successfully.')
         return super().delete(request, *args, **kwargs)
+
+# Custom Log In message for users who are not signed in
+def custom_login_message(request):
+    return render(request, 'crm/custom_login_message.html')
+
+def signup(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')  # Redirect to login after successful signup
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/signup.html', {'form': form})
