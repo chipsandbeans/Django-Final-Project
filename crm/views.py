@@ -4,7 +4,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.core.exceptions import PermissionDenied
-from .models import Meal
+from .models import Meal, WeightTracking
+from .forms import WeightTrackingForm
 
 class MealListView(LoginRequiredMixin, ListView):
     model = Meal 
@@ -86,3 +87,13 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+class WeightCreateView(CreateView):
+    model = WeightTracking
+    form_class = WeightTrackingForm
+    template_name = 'add_weight.html'
+    success_url = 'weight_list'
+
+    def valid_form(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
