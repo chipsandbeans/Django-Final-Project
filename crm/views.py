@@ -20,5 +20,15 @@ class MealCreateView(CreateView):
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
-        form.instance.user = self.request.user  # Set the user as the logged-in user
+        form.instance.user = self.request.user 
+        return super().form_valid(form)
+
+class MealUpdateView(UpdateView):
+    model = Meal
+    template_name = 'crm/meal_form.html'
+    fields = ['title', 'protein', 'carbs', 'fats']
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user  # Ensure that the logged-in user is the owner
         return super().form_valid(form)
