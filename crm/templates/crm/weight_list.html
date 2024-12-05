@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h2>Your Weight Entries</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Weight</th>
+          <th>Unit</th>
+          <th>Created At</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for weight in weights %}
+          <tr>
+            <td>{{ weight.weight }}</td>
+            <td>{{ weight.get_unit_display }}</td>
+            <td>{{ weight.created_at }}</td>
+            <td>
+              <a href="{% url 'weight_update' weight.id %}">Edit</a> | 
+              <a href="{% url 'weight_delete' weight.id %}">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="{% url 'weight_create' %}" class="btn btn-primary">Add New Entry</a>
+  </div>
+{% endblock %}

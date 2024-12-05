@@ -104,4 +104,4 @@ class WeightListView(LoginRequiredMixin, ListView):
     context_object_name = 'weights'
 
     def get_queryset(self):
-        return WeightTracking.objects.filter(user=self.request.user).order_by('-created_at')
+        return WeightTracking.objects.filter(user=self.request.user).order_by('-created_on')
