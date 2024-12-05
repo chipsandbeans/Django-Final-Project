@@ -1,5 +1,6 @@
 from . import views
 from django.contrib import admin
+from django.contrib.auth.views import LoginView
 from django.urls import path, include
 from .views import (MealListView, MealDetailView, MealCreateView, MealUpdateView, MealDeleteView, custom_login_message, signup)
 
@@ -14,4 +15,4 @@ urlpatterns = [
     path('<int:pk>/delete/', MealDeleteView.as_view(), name='meal-delete'),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    ]
+    path('login/', LoginView.as_view(template_name='registration/login.html'), name='login'),    ]
