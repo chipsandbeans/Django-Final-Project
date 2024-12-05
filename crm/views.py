@@ -97,3 +97,11 @@ class WeightCreateView(CreateView):
     def valid_form(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+class WeightListView(LoginRequiredMixin, ListView):
+    model = WeightTracking
+    template_name = 'weight_list.html'
+    context_object_name = 'weights'
+
+    def get_queryset(self):
+        return WeightTracking.objects.filter(user=self.request.user).order_by('-created_at')
