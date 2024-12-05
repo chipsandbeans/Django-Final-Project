@@ -2,12 +2,17 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.core.exceptions import PermissionDenied
+from django.shortcuts import redirect, render
 from .models import Meal
 
-class MealListView(ListView):
+class MealListView(LoginRequiredMixin, ListView):
     model = Meal 
     template_name = 'crm/meal_list.html'
     context_object_name = 'meals'
+    login_url = reverse_lazy('custom-login-message')
+
+    def get_queryset(self):
+        return Meal.objects.filter(user=self.request.user)
 
 class MealDetailView(DetailView):
     model = Meal
