@@ -15,7 +15,7 @@ class Meal(models.Model):
     def total_calories(self):
         return (self.protein *4) + (self.carbs * 4) + (self.fats * 9)
 
-class WeightTracking(model.Models):
+class WeightTracking(models.Model):
     
     UNIT_CHOICES = (
         ('kg', 'Kilograms'),
