@@ -15,4 +15,9 @@ urlpatterns = [
     path('<int:pk>/delete/', MealDeleteView.as_view(), name='meal-delete'),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('login/', LoginView.as_view(template_name='registration/login.html'), name='login'),    ]
+    path('login/', LoginView.as_view(template_name='registration/login.html'), name='login'),
+    path('weight/add/', views.WeightCreateView.as_view(), name='weight_create'),
+    path('weights/', views.WeightListView.as_view(), name='weight_list'),
+    path('weight/update/<int:pk>/', views.WeightUpdateView.as_view(), name='weight_update'),
+    path('weight/delete/<int:pk>/', views.WeightDeleteView.as_view(), name='weight_delete'),
+]
