@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.core.exceptions import PermissionDenied
 from .models import Meal
 
 class MealListView(ListView):
@@ -43,3 +44,7 @@ class MealDeleteView(DeleteView):
         if obj.user != self.request.user:
             raise PermissionDenied("You are not authorized to delete this meal.")
         return obj
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, 'Meal deleted successfully.')
+        return super().delete(request, *args, **kwargs)
