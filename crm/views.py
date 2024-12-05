@@ -30,5 +30,16 @@ class MealUpdateView(UpdateView):
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
-        form.instance.user = self.request.user  # Ensure that the logged-in user is the owner
+        form.instance.user = self.request.user 
         return super().form_valid(form)
+
+class MealDeleteView(DeleteView):
+    model = Meal
+    template_name = 'crm/meal_confirm_delete.html'
+    success_url = reverse_lazy('home')
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        if obj.user != self.request.user:
+            raise PermissionDenied("You are not authorized to delete this meal.")
+        return obj
