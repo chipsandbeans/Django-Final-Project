@@ -118,3 +118,11 @@ class WeightUpdateView(LoginRequiredMixin, UpdateView):
     # Return to weight list once updated
     def get_success_url(self):
         return reverse_lazy('weight_list')
+
+class WeightDeleteView(DeleteView):
+    model = WeightTracking
+    template_name = "delete_weight.html"
+    success_url = reverse_lazy('weight_list')
+
+    def get_queryset(self):
+        return WeightTracking.objects.filter(user=self.request.user)
