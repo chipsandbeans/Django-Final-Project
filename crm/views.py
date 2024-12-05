@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
+from django.contrib.auth.decorators import login_required
 from .models import Meal
 
 """
@@ -11,7 +12,9 @@ def meal_list(request):
     
     return render(request, 'meal_list.html', {'object_list': meals})
 """
-
+# Shows meals if logged in, if not redirects to login
+@login_required
 def meal_list(request):
-    meals = Meal.objects.all()  # Retrieve all meals
+    user_id = request.user.id 
+    meals = Meal.objects.filter(user_id=user_id)
     return render(request, 'meal_list.html', {'meals': meals})
