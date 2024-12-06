@@ -13,7 +13,6 @@ urlpatterns = [
     path('create/', MealCreateView.as_view(), name='meal-create'),
     path('<int:pk>/update/', MealUpdateView.as_view(), name='meal-update'),
     path('<int:pk>/delete/', MealDeleteView.as_view(), name='meal-delete'),
-    path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('login/', LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('weights/', views.WeightListView.as_view(), name='weight_list'),
