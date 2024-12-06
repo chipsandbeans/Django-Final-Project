@@ -5,6 +5,7 @@ from django.views import View
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
+from django.contrib import messages
 from django.urls import reverse_lazy
 from django.core.exceptions import PermissionDenied
 from .models import Meal, WeightTracking
