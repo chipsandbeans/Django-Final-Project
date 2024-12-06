@@ -1,4 +1,7 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.views import View
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
@@ -98,24 +101,15 @@ class WeightCreateView(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-class WeightListView(LoginRequiredMixin, ListView, FormView):
-    model = WeightTracking
-    template_name = 'weight_list.html'
-    context_object_name = 'weights'
-    form_class = WeightTrackingForm
-    success_url = reverse_lazy('weight_list')
+@method_decorator(login_required(login_url='/custom-weight-login-message/'), name='dispatch')
+@method_decorator(login_required(login_url='/custom-weight-login-message/'), name='dispatch')
+class WeightListView(View):
+    def get(self, request):
+        weights = WeightTracking.objects.filter(user=request.user)
+        return render(request, 'weight_list.html', {'weights': weights})
 
-    def get_queryset(self):
-        return WeightTracking.objects.filter(user=self.request.user)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['weight_form'] = self.get_form()
-        return context
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+def custom_weight_login_message(request):
+    return render(request, 'custom_weight_login_message.html')
 
 class WeightUpdateView(LoginRequiredMixin, UpdateView):
     model = WeightTracking

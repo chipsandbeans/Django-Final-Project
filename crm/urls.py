@@ -21,4 +21,6 @@ urlpatterns = [
     path('weight/update/<int:pk>/', views.WeightUpdateView.as_view(), name='weight_update'),
     path('weight/delete/<int:pk>/', views.WeightDeleteView.as_view(), name='weight_delete'),
     path('my-weight/', WeightListView.as_view(), name='weight_list'),
+    path('my-weight/', views.WeightListView.as_view(), name='weight_list'),
+    path('custom-weight-login-message/', views.custom_weight_login_message, name='custom_weight_login_message'),
 ]

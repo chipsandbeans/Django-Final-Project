@@ -52,7 +52,8 @@
                             href="{% url 'home' %}">My Meals</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'weight_list' %}">My Weight</a>
+                        <a class="nav-link {% if request.path == weight_url %}active{% endif %}" 
+                            href="{% url 'weight_list' %}">My Weight</a>
                       </li>
                     <li class="nav-item">
                         <a class="nav-link

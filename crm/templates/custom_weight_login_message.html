@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Required</title>
+</head>
+<body>
+    <h1>Access Restricted</h1>
+    <p>You must log in to track your weight. Please <a href="{% url 'login' %}">log in here</a>.</p>
+</body>
+</html>
+
+{% endblock %}
+
+{% block copyright %}
+Copyright 2024 Bryan Murphy
+{% endblock %}
