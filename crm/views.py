@@ -90,11 +90,11 @@ def signup(request):
 
 class WeightCreateView(LoginRequiredMixin, CreateView):
     model = WeightTracking
+    template_name = "add_weight.html"
     form_class = WeightTrackingForm
-    template_name = 'add_weight.html'
-    success_url = 'weight_list'
+    success_url = reverse_lazy('weight_list')
 
-    def valid_form(self, form):
+    def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
 

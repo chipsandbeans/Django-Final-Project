@@ -14,19 +14,22 @@
     </thead>
     <tbody>
       {% for weight in weights %}
-      <tr>
-        <td>{{ weight.weight }}</td>
-        <td>{{ weight.unit }}</td>
-        <td>{{ weight.date_added }}</td>
-        <td>
-          <!-- Update and Delete buttons -->
-          <a href="{% url 'update_weight' weight.id %}" class="btn btn-primary btn-sm">Edit</a>
-          <a href="{% url 'delete_weight' weight.id %}" class="btn btn-danger btn-sm">Delete</a>
-        </td>
-      </tr>
+        <tr>
+          <td>{{ weight.weight }}</td>
+          <td>{{ weight.unit }}</td>
+          <td>{{ weight.created_on }}</td>
+          <td>
+            <a href="{% url 'weight_update' weight.id %}" class="btn btn-primary btn-sm">Edit</a>
+            <a href="{% url 'weight_delete' weight.id %}" class="btn btn-danger btn-sm">Delete</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="4">No weights recorded yet.</td>
+        </tr>
       {% endfor %}
     </tbody>
-  </table>
+  </table>  
 
   <hr />
 
@@ -34,7 +37,7 @@
   <form method="post" action="">
     {% csrf_token %}
     {{ weight_form.as_p }}
-    <button type="submit" class="btn btn-success">Add Weight</button>
+    <a href="{% url 'create_weight' %}" class="btn btn-success">Add Weight</a>
   </form>
 </div>
 {% endblock %}

@@ -2,7 +2,7 @@ from . import views
 from django.contrib import admin
 from django.contrib.auth.views import LoginView
 from django.urls import path, include
-from .views import (MealListView, MealDetailView, MealCreateView, MealUpdateView, MealDeleteView, custom_login_message, signup, WeightListView)
+from .views import (MealListView, MealDetailView, MealCreateView, MealUpdateView, MealDeleteView, custom_login_message, signup, WeightListView, WeightCreateView, WeightUpdateView, WeightDeleteView)
 
 urlpatterns = [
     # path('meals/', views.meal_list, name='meal-list'),
@@ -16,8 +16,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('login/', LoginView.as_view(template_name='registration/login.html'), name='login'),
-    path('weight/add/', views.WeightCreateView.as_view(), name='weight_create'),
     path('weights/', views.WeightListView.as_view(), name='weight_list'),
+    path('weight/add/', WeightCreateView.as_view(), name='create_weight'),
     path('weight/update/<int:pk>/', views.WeightUpdateView.as_view(), name='weight_update'),
     path('weight/delete/<int:pk>/', views.WeightDeleteView.as_view(), name='weight_delete'),
     path('my-weight/', WeightListView.as_view(), name='weight_list'),
