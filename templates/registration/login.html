@@ -16,8 +16,9 @@
                 <br>
                 To track your Meals, please log in. If
                 you
-                have not created an account yet, then <a class="link" href="{{ signup_url }}">sign up</a>
-                first.{% endblocktrans %}</p>
+                have not created an account yet, then
+                {% endblocktrans %} <a class="link" href="{% url 'signup' %}">sign up</a>
+                {% blocktrans %}first.{% endblocktrans %}</p>
         </div>
     </div>
     <div class="row">
