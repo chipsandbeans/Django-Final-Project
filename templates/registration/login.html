@@ -14,14 +14,17 @@
                     <h3 class="mb-0">{% trans "Sign In" %}</h3>
                 </div>
                 <div class="card-body">
-                    <p>{% blocktrans %}Welcome back to <strong>Munchy!</strong><br>To track your meals, please log in. If you haven't created an account yet, then{% endblocktrans %} <a class="link" href="{% url 'signup' %}">{% trans "sign up" %}</a> {% blocktrans %}first.{% endblocktrans %}</p>
+                    <p>{% blocktrans %}Welcome back to <strong>Munchy!</strong><br>To track your meals, please log in.
+                        If you haven't created an account yet, then{% endblocktrans %} <a class="link"
+                            href="{% url 'signup' %}">{% trans "sign up" %}</a> {% blocktrans %}first.{% endblocktrans
+                        %}</p>
 
                     <form method="POST" action="{% url 'account_login' %}">
                         {% csrf_token %}
                         {{ form.as_p }}
 
                         {% if redirect_field_value %}
-                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                         {% endif %}
 
                         <button type="submit" class="btn btn-primary w-100 mt-3">{% trans "Sign In" %}</button>

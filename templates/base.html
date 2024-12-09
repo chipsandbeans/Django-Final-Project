@@ -68,14 +68,16 @@
         </div>
     </nav>
 
-    <!-- User Status Message -->
-    <div class="text-dark py-2 text-end">
+    <!-- User Login Status -->
+    <div class="text-dark py-2 text-end me-5">
         {% if user.is_authenticated %}
         <p class="m-0">You are logged in as <strong>{{ user.username }}</strong>.</p>
         {% else %}
-        <p class="m-0">Please <a href="{% url 'login' %}" class="text-primary text-decoration-underline">log in</a> or
+        <p class="m-0">You are logged out. Please <a href="{% url 'login' %}"
+                class="text-primary text-decoration-underline">log in</a> or
             <a href="{% url 'signup' %}" class="text-primary text-decoration-underline">sign up</a> to access
-            <strong>Munchy</strong>.</p>
+            <strong>Munchy</strong>.
+        </p>
         {% endif %}
     </div>
 

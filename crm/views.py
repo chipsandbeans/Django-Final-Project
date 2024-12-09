@@ -103,7 +103,6 @@ class WeightCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 @method_decorator(login_required(login_url='/custom-weight-login-message/'), name='dispatch')
-@method_decorator(login_required(login_url='/custom-weight-login-message/'), name='dispatch')
 class WeightListView(View):
     def get(self, request):
         weights = WeightTracking.objects.filter(user=request.user)
