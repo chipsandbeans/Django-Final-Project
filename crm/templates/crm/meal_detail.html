@@ -1,29 +1,45 @@
 {% extends "base.html" %}
 
+{% block title %}{{ meal.title }}{% endblock %}
+
 {% block content %}
-
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>{{ meal.title }}</title>
-</head>
-
-<body>
-    <h1>{{ meal.title }}</h1>
-    <p><strong>Protein:</strong> {{ meal.protein }}g</p>
-    <p><strong>Carbs:</strong> {{ meal.carbs }}g</p>
-    <p><strong>Fats:</strong> {{ meal.fats }}g</p>
-    <p><strong>Total Calories:</strong> {{ meal.total_calories }} kcal</p>
-    <p><strong>Meal Time:</strong> {{ meal.meal_time }}</p>
-
-    <a href="{% url 'meal-update' meal.pk %}">Edit Meal</a>
-    <a href="{% url 'meal-delete' meal.pk %}">Delete Meal</a>
-    <a href="{% url 'home' %}">Back to Meal List</a>
-</body>
-
-</html>
-
+<div class="container py-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white text-center">
+            <h2 class="mb-0">{{ meal.title }}</h2>
+        </div>
+        <div class="card-body text-center">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <strong>Protein:</strong> {{ meal.protein }}g
+                </li>
+                <li class="list-group-item">
+                    <strong>Carbs:</strong> {{ meal.carbs }}g
+                </li>
+                <li class="list-group-item">
+                    <strong>Fats:</strong> {{ meal.fats }}g
+                </li>
+                <li class="list-group-item">
+                    <strong>Total Calories:</strong> {{ meal.total_calories }} kcal
+                </li>
+                <li class="list-group-item">
+                    <strong>Meal Time:</strong> {{ meal.meal_time|date:"M d, Y H:i" }}
+                </li>
+            </ul>
+        </div>
+        <div class="card-footer text-center">
+            <a href="{% url 'meal-update' meal.pk %}" class="btn btn-warning me-2">
+                <i class="fas fa-edit"></i> Edit Meal
+            </a>
+            <a href="{% url 'meal-delete' meal.pk %}" class="btn btn-danger me-2">
+                <i class="fas fa-trash-alt"></i> Delete Meal
+            </a>
+            <a href="{% url 'home' %}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to Meal List
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block copyright %}
