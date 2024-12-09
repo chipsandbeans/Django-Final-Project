@@ -3,13 +3,13 @@
 {% block title %}Meal List{% endblock %}
 
 {% block content %}
-<div class="container py-4">
+<div class="container py-4 shadow-lg">
     <h1 class="mb-4 text-center text-dark-grey">My Meals</h1>
     
     {% if user.is_authenticated %}
         <div class="text-end mb-3">
             <a href="{% url 'meal-create' %}" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Add New Meal
+                <i class="fas fa-plus shadow-lg"></i> Add New Meal
             </a>
         </div>
     {% endif %}
