@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% load i18n %}
-{% load account socialaccount %}
 
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
@@ -14,10 +13,11 @@
                     <h3 class="mb-0">{% trans "Sign In" %}</h3>
                 </div>
                 <div class="card-body">
-                    <p>{% blocktrans %}Welcome back to <strong>Munchy!</strong><br>To track your meals, please log in.
-                        If you haven't created an account yet, then{% endblocktrans %} <a class="link"
-                            href="{% url 'signup' %}">{% trans "sign up" %}</a> {% blocktrans %}first.{% endblocktrans
-                        %}</p>
+                    <p>
+                        {% blocktrans %}Welcome back to <strong>Munchy!</strong><br>To track your meals, please log in.
+                        If you haven't created an account yet, then sign up first.{% endblocktrans %}
+                        <a class="link" href="{% url 'signup' %}">{% trans "Sign up" %}</a>.
+                    </p>
 
                     <form method="POST" action="{% url 'account_login' %}">
                         {% csrf_token %}
@@ -26,8 +26,7 @@
                         {% if redirect_field_value %}
                         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                         {% endif %}
-
-                        <button type="submit" class="btn btn-primary w-100 mt-3">{% trans "Sign In" %}</button>
+                        <button class="btn btn-primary w-100" type="submit">{% trans "Sign In" %}</button>
                     </form>
                 </div>
             </div>
