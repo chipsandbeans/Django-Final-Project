@@ -68,6 +68,17 @@
         </div>
     </nav>
 
+    <!-- User Status Message -->
+    <div class="text-dark py-2 text-end">
+        {% if user.is_authenticated %}
+        <p class="m-0">You are logged in as <strong>{{ user.username }}</strong>.</p>
+        {% else %}
+        <p class="m-0">Please <a href="{% url 'login' %}" class="text-primary text-decoration-underline">log in</a> or
+            <a href="{% url 'signup' %}" class="text-primary text-decoration-underline">sign up</a> to access
+            <strong>Munchy</strong>.</p>
+        {% endif %}
+    </div>
+
 
     <main class="container my-4 flex-shrink-0">
         {% block content %}
@@ -81,7 +92,7 @@
         <div class="container text-center">
             <p class="m-0 text-center text-white">
                 {% block copyright %}
-                Made by Bryan
+                Copyright 2024 Bryan Murphy
                 {% endblock %}
             </p>
             <p>
