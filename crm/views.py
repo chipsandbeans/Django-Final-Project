@@ -13,8 +13,6 @@ from django.urls import reverse_lazy
 from django.core.exceptions import PermissionDenied
 from .models import Meal, WeightTracking
 from .forms import WeightTrackingForm
-
-#by roo
 from django.contrib.messages.views import SuccessMessageMixin
 
 # View Meal List
@@ -122,14 +120,13 @@ class WeightCreateView(LoginRequiredMixin, CreateView):
         messages.success(self.request, 'Weight added successfully!')
         return super().form_valid(form)
 
-# Weight List
+# Weight List for logged in users
 @method_decorator(login_required(login_url='/custom-weight-login-message/'), name='dispatch')
 class WeightListView(View):
     def get(self, request):
         weights = WeightTracking.objects.filter(user=request.user)
         return render(request, 'weight_list.html', {'weights': weights})
 
-# Only logged out users can see weight list
 def not_logged_in(user):
     return not user.is_authenticated
 
@@ -174,7 +171,7 @@ class CustomLogoutView(LogoutView):
         messages.success(request, "You have been successfully logged out.")
         return response
 
-#Custom Login View that redirects logged in users to the meal list
+# Custom Login View that redirects logged in users to the meal list
 class CustomLoginView(LoginView):
     template_name = 'registration/login.html'
 
