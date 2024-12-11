@@ -4,6 +4,7 @@ from django.utils.decorators import method_decorator
 from django.views import View
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import user_passes_test
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from django.contrib import messages
 from django.urls import reverse_lazy
@@ -79,6 +80,10 @@ class MealDeleteView(DeleteView):
         return super().delete(request, *args, **kwargs)
 
 # Custom Log In message for users who are not signed in
+def not_logged_in(user):
+    return not user.is_authenticated
+
+@user_passes_test(not_logged_in, login_url='home')
 def custom_login_message(request):
     return render(request, 'crm/custom_login_message.html')
 
