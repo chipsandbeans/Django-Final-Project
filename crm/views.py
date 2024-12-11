@@ -80,11 +80,11 @@ class MealDeleteView(LoginRequiredMixin, DeleteView):
         return obj
 
     def delete(self, request, *args, **kwargs):
-        messages.success(request, "Meal deleted successfully.")
+        messages.success(request, "Meal deleted successfully!")
         return super().delete(request, *args, **kwargs)
 
 
-# Custom Log In message for users who are not signed in
+# Custom Log In page for users who are not signed in
 def not_logged_in(user):
     return not user.is_authenticated
 
@@ -152,27 +152,29 @@ class WeightUpdateView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy('weight_list')
 
-class WeightDeleteView(DeleteView):
+class WeightDeleteView(LoginRequiredMixin, DeleteView):
     model = WeightTracking
-    template_name = "delete_weight.html"
+    template_name = 'delete_weight.html'
     success_url = reverse_lazy('weight_list')
 
     def get_queryset(self):
         return WeightTracking.objects.filter(user=self.request.user)
 
     def delete(self, request, *args, **kwargs):
-        messages.success(self.request, 'Weight entry deleted successfully!')
+        messages.success(request, "Weight entry deleted successfully!")
         return super().delete(request, *args, **kwargs)
 
+# Custom logout view that displays logout message
 class CustomLogoutView(LogoutView):
     def dispatch(self, request, *args, **kwargs):
+        response = super().dispatch(request, *args, **kwargs)
         messages.success(request, "You have been successfully logged out.")
-        return redirect('login')
+        return response
 
 class CustomLoginView(LoginView):
-    template_name = 'registration/login.html'  # Use your login template path
+    template_name = 'registration/login.html'
 
     def dispatch(self, request, *args, **kwargs):
-        if request.user.is_authenticated:  # Check if the user is already logged in
-            return redirect(reverse_lazy('home'))  # Redirect to home
+        if request.user.is_authenticated:
+            return redirect('home') 
         return super().dispatch(request, *args, **kwargs)
