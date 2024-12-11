@@ -2,15 +2,15 @@
 {% load static %}
 
 {% block content %}
-<div class="container-fluid vh-100">
-    <div class="row h-100 gx-0">
+<div class="container-fluid min-vh-100 d-flex flex-column">
+    <div class="row flex-grow-1 gx-0">
         <!-- Munchy App description image -->
         <div class="col-lg-6 col-md-6 col-12 p-0 d-flex align-items-center justify-content-center">
             <img src="{% static 'images/munchybackground.jpg' %}" class="img-fluid" alt="Munchy Background">
         </div>
         <!-- Login/Sign Up Card -->
         <div class="col-lg-6 col-md-6 col-12 d-flex align-items-center justify-content-center bg-light">
-            <div class="card shadow-lg text-center w-75">
+            <div class="card shadow-lg text-center w-100 mx-3" style="max-width: 500px;">
                 <div class="card-header bg-secondary text-white">
                     <h3>Access Restricted</h3>
                 </div>

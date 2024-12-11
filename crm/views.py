@@ -75,22 +75,6 @@ class MealUpdateView(UpdateView):
         return reverse_lazy('meal-detail', kwargs={'pk': self.object.pk})
 
 # Meal Delete View
-# class MealDeleteView(LoginRequiredMixin, DeleteView):
-#     model = Meal
-#     template_name = 'crm/meal_confirm_delete.html'
-#     success_url = reverse_lazy('home')
-
-#     def get_object(self, queryset=None):
-#         obj = super().get_object(queryset)
-#         if obj.user != self.request.user:
-#             raise PermissionDenied("You are not authorized to delete this meal.")
-#         return obj
-
-#     def delete(self, request, *args, **kwargs):
-#         messages.success(request, "Meal deleted successfully!")
-#         return super().delete(request, *args, **kwargs)
-
-# by roo.
 class MealDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Meal
     template_name = 'crm/meal_confirm_delete.html'
