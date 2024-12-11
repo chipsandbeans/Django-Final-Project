@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views import View
@@ -40,6 +40,7 @@ class MealCreateView(CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user 
+        messages.success(self.request, 'Meal created successfully!')
         return super().form_valid(form)
 
 class MealUpdateView(UpdateView):
