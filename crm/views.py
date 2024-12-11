@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import user_passes_test
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
-from django.contrib.auth.views import LogoutView
+from django.contrib.auth.views import LogoutView, LoginView
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.urls import reverse_lazy
@@ -68,7 +68,7 @@ class MealUpdateView(UpdateView):
         return reverse_lazy('meal-detail', kwargs={'pk': self.object.pk})
 
 # Meal Delete View
-class MealDeleteView(DeleteView):
+class MealDeleteView(LoginRequiredMixin, DeleteView):
     model = Meal
     template_name = 'crm/meal_confirm_delete.html'
     success_url = reverse_lazy('home')
@@ -80,8 +80,9 @@ class MealDeleteView(DeleteView):
         return obj
 
     def delete(self, request, *args, **kwargs):
-        messages.success(self.request, 'Meal deleted successfully!')
+        messages.success(request, "Meal deleted successfully.")
         return super().delete(request, *args, **kwargs)
+
 
 # Custom Log In message for users who are not signed in
 def not_logged_in(user):
@@ -167,3 +168,11 @@ class CustomLogoutView(LogoutView):
     def dispatch(self, request, *args, **kwargs):
         messages.success(request, "You have been successfully logged out.")
         return redirect('login')
+
+class CustomLoginView(LoginView):
+    template_name = 'registration/login.html'  # Use your login template path
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:  # Check if the user is already logged in
+            return redirect(reverse_lazy('home'))  # Redirect to home
+        return super().dispatch(request, *args, **kwargs)
