@@ -8,11 +8,13 @@
         <div class="card-header bg-primary text-white text-center">
           <h2 class="mb-0">Update Weight</h2>
         </div>
+        <!-- Card body allows users to input weight form to update weight -->
         <div class="card-body">
           <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <div class="d-flex justify-content-between">
+              <!-- buttons to confirm update or cancel update -->
               <button type="submit" class="btn btn-primary">
                 <i class="fas fa-save"></i> Update Weight
               </button>

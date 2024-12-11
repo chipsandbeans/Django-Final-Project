@@ -15,18 +15,22 @@
     {% endif %}
 
     {% if meals %}
+    <!-- displays list of created meals -->
     <ul class="list-group">
         {% for meal in meals %}
         <li class="list-group-item d-flex justify-content-between align-items-center">
+            <!-- links to meal details -->
             <a href="{% url 'meal-detail' meal.pk %}" class="post-link">
                 {{ meal.title }}
             </a>
+            <!-- Displays meal calories -->
             <span class="badge bg-secondary">
                 {{ meal.total_calories }} Calories
             </span>
         </li>
         {% endfor %}
     </ul>
+    <!-- Message if no meals have been added -->
     {% else %}
     <p class="text-muted text-center">No meals added yet. Start tracking your meals today!</p>
     {% endif %}
