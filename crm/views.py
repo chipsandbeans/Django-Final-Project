@@ -113,6 +113,11 @@ class WeightListView(View):
         weights = WeightTracking.objects.filter(user=request.user)
         return render(request, 'weight_list.html', {'weights': weights})
 
+# Only logged out users can see page, logged in sees weight list
+def not_logged_in(user):
+    return not user.is_authenticated
+
+@user_passes_test(not_logged_in, login_url='weight_list')
 def custom_weight_login_message(request):
     return render(request, 'custom_weight_login_message.html')
 
