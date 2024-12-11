@@ -5,7 +5,8 @@ from django.views import View
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import user_passes_test
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView, View
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
+from django.contrib.auth.views import LogoutView
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.urls import reverse_lazy
@@ -162,7 +163,7 @@ class WeightDeleteView(DeleteView):
         messages.success(self.request, 'Weight entry deleted successfully!')
         return super().delete(request, *args, **kwargs)
 
-def custom_logout(request):
-    logout(request)
-    messages.info(request, 'You have successfully signed out.')
-    return redirect('home')
+class CustomLogoutView(LogoutView):
+    def dispatch(self, request, *args, **kwargs):
+        messages.success(request, "You have been successfully logged out.")
+        return redirect('login')
