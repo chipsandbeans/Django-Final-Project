@@ -14,6 +14,10 @@ from django.core.exceptions import PermissionDenied
 from .models import Meal, WeightTracking
 from .forms import WeightTrackingForm
 
+#by roo
+from django.contrib.messages.views import SuccessMessageMixin
+
+# View Meal List
 class MealListView(LoginRequiredMixin, ListView):
     model = Meal 
     template_name = 'crm/meal_list.html'
@@ -23,6 +27,7 @@ class MealListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Meal.objects.filter(user=self.request.user)
 
+# View Meal Details
 class MealDetailView(DetailView):
     model = Meal
     template_name = 'crm/meal_detail.html'
@@ -34,6 +39,7 @@ class MealDetailView(DetailView):
             raise PermissionDenied("You are not authorized to view this meal.")
         return obj
 
+# Create Meals
 class MealCreateView(CreateView):
     model = Meal
     template_name = 'crm/meal_form.html'
@@ -45,6 +51,7 @@ class MealCreateView(CreateView):
         messages.success(self.request, 'Meal created successfully!')
         return super().form_valid(form)
 
+# Update Meals
 class MealUpdateView(UpdateView):
     model = Meal
     template_name = 'crm/meal_form.html'
@@ -68,21 +75,33 @@ class MealUpdateView(UpdateView):
         return reverse_lazy('meal-detail', kwargs={'pk': self.object.pk})
 
 # Meal Delete View
-class MealDeleteView(LoginRequiredMixin, DeleteView):
+# class MealDeleteView(LoginRequiredMixin, DeleteView):
+#     model = Meal
+#     template_name = 'crm/meal_confirm_delete.html'
+#     success_url = reverse_lazy('home')
+
+#     def get_object(self, queryset=None):
+#         obj = super().get_object(queryset)
+#         if obj.user != self.request.user:
+#             raise PermissionDenied("You are not authorized to delete this meal.")
+#         return obj
+
+#     def delete(self, request, *args, **kwargs):
+#         messages.success(request, "Meal deleted successfully!")
+#         return super().delete(request, *args, **kwargs)
+
+# by roo.
+class MealDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Meal
     template_name = 'crm/meal_confirm_delete.html'
     success_url = reverse_lazy('home')
+    success_message = "Meal deleted successfully!"
 
     def get_object(self, queryset=None):
         obj = super().get_object(queryset)
         if obj.user != self.request.user:
             raise PermissionDenied("You are not authorized to delete this meal.")
         return obj
-
-    def delete(self, request, *args, **kwargs):
-        messages.success(request, "Meal deleted successfully!")
-        return super().delete(request, *args, **kwargs)
-
 
 # Custom Log In page for users who are not signed in
 def not_logged_in(user):
@@ -92,12 +111,11 @@ def not_logged_in(user):
 def custom_login_message(request):
     return render(request, 'crm/custom_login_message.html')
 
-# redirect user to meal list if already logged in
 def not_logged_in(user):
     return not user.is_authenticated
 
+# Signup for logged out users
 @user_passes_test(not_logged_in, login_url='home')
-# Sign Up
 def signup(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
@@ -108,6 +126,7 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
 
+# Create a Weight Entry
 class WeightCreateView(LoginRequiredMixin, CreateView):
     model = WeightTracking
     template_name = "add_weight.html"
@@ -119,13 +138,14 @@ class WeightCreateView(LoginRequiredMixin, CreateView):
         messages.success(self.request, 'Weight added successfully!')
         return super().form_valid(form)
 
+# Weight List
 @method_decorator(login_required(login_url='/custom-weight-login-message/'), name='dispatch')
 class WeightListView(View):
     def get(self, request):
         weights = WeightTracking.objects.filter(user=request.user)
         return render(request, 'weight_list.html', {'weights': weights})
 
-# Only logged out users can see page, logged in sees weight list
+# Only logged out users can see weight list
 def not_logged_in(user):
     return not user.is_authenticated
 
@@ -152,17 +172,16 @@ class WeightUpdateView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy('weight_list')
 
-class WeightDeleteView(LoginRequiredMixin, DeleteView):
+# Delete Weight Entry
+class WeightDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = WeightTracking
     template_name = 'delete_weight.html'
     success_url = reverse_lazy('weight_list')
+    success_message = "Weight Entry deleted successfully!"
 
     def get_queryset(self):
         return WeightTracking.objects.filter(user=self.request.user)
 
-    def delete(self, request, *args, **kwargs):
-        messages.success(request, "Weight entry deleted successfully!")
-        return super().delete(request, *args, **kwargs)
 
 # Custom logout view that displays logout message
 class CustomLogoutView(LogoutView):
@@ -171,6 +190,7 @@ class CustomLogoutView(LogoutView):
         messages.success(request, "You have been successfully logged out.")
         return response
 
+#Custom Login View that redirects logged in users to the meal list
 class CustomLoginView(LoginView):
     template_name = 'registration/login.html'
 
