@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import user_passes_test
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView, View
 from django.contrib import messages
+from django.contrib.auth import logout
 from django.urls import reverse_lazy
 from django.core.exceptions import PermissionDenied
 from .models import Meal, WeightTracking
@@ -65,6 +66,7 @@ class MealUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('meal-detail', kwargs={'pk': self.object.pk})
 
+# Meal Delete View
 class MealDeleteView(DeleteView):
     model = Meal
     template_name = 'crm/meal_confirm_delete.html'
@@ -77,7 +79,7 @@ class MealDeleteView(DeleteView):
         return obj
 
     def delete(self, request, *args, **kwargs):
-        messages.success(self.request, 'Meal deleted successfully.')
+        messages.success(self.request, 'Meal deleted successfully!')
         return super().delete(request, *args, **kwargs)
 
 # Custom Log In message for users who are not signed in
@@ -112,6 +114,7 @@ class WeightCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        messages.success(self.request, 'Weight added successfully!')
         return super().form_valid(form)
 
 @method_decorator(login_required(login_url='/custom-weight-login-message/'), name='dispatch')
@@ -128,6 +131,8 @@ def not_logged_in(user):
 def custom_weight_login_message(request):
     return render(request, 'custom_weight_login_message.html')
 
+# Update Weight
+@method_decorator(login_required, name='dispatch')
 class WeightUpdateView(LoginRequiredMixin, UpdateView):
     model = WeightTracking
     form_class = WeightTrackingForm
@@ -138,6 +143,10 @@ class WeightUpdateView(LoginRequiredMixin, UpdateView):
         return WeightTracking.objects.filter(user=self.request.user)
 
     # Return to weight list once updated
+    def form_valid(self, form):
+        messages.success(self.request, 'Weight updated successfully!')
+        return super().form_valid(form)
+
     def get_success_url(self):
         return reverse_lazy('weight_list')
 
@@ -148,3 +157,12 @@ class WeightDeleteView(DeleteView):
 
     def get_queryset(self):
         return WeightTracking.objects.filter(user=self.request.user)
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, 'Weight entry deleted successfully!')
+        return super().delete(request, *args, **kwargs)
+
+def custom_logout(request):
+    logout(request)
+    messages.info(request, 'You have successfully signed out.')
+    return redirect('home')
