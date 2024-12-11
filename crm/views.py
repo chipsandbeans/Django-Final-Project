@@ -87,6 +87,12 @@ def not_logged_in(user):
 def custom_login_message(request):
     return render(request, 'crm/custom_login_message.html')
 
+# redirect user to meal list if already logged in
+def not_logged_in(user):
+    return not user.is_authenticated
+
+@user_passes_test(not_logged_in, login_url='home')
+# Sign Up
 def signup(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
