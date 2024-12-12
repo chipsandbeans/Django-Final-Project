@@ -1,21 +1,21 @@
 # Munchy - The Meal Tracking App
 
-![Meal Tracker Logo](#)
+![Munchy Logo](munchybackground(2).png)
 
 ### Link to the deployed project:
-[[Munchy Deployed Link](https://my-frenly-pt-eb54dfd3fc9e.herokuapp.com/)]
+## [Munchy Deployed Link](https://my-frenly-pt-eb54dfd3fc9e.herokuapp.com/)
 
 ---
 
-## Purpose of this Project
+## Purpose of Munchy
 
-The Meal Tracking App helps users maintain a record of their meals and nutritional information. By clicking 'Add Meal' and filling out the form, users can log their meals with details about protein, carbs, fats, and meal time. Users can view, edit, and delete their meal entries while also monitoring total calorie intake for better health management. It also allows users to maintain a record of their weight by adding a weight entry to the weight table.
+This Meal Tracking App helps users maintain a record of their meals and nutritional information. By clicking 'Add Meal' and filling out the form, users can log their meals with details about protein, carbs, fats, and meal time. Users can view, edit, and delete their meal entries while also monitoring total calorie intake for better health management. It also allows users to maintain a record of their weight by adding a weight entry to the weight table.
 
 ---
 
 ## Table of Contents
 
-1. [User Demographic](#user-demographic)
+1. [User Demographics](#user-demographics)
 2. [User Experience](#user-experience)
 3. [Agile Methodology](#agile-methodology)
 4. [Epics and User Stories](#epics-and-user-stories)
@@ -25,31 +25,31 @@ The Meal Tracking App helps users maintain a record of their meals and nutrition
    - [User Interface, Experience, and Feedback](#user-interface-experience-and-feedback)
    - [User Flow](#user-flow)
 5. [Features](#features)
-6. [Future Features](#future-features)
-7. [Bugs](#bugs)
-8. [Design](#design)
+7. [Future Features](#future-features)
+8. [Bugs](#bugs)
+9. [Design](#design)
    - [Color](#color)
    - [Typography](#typography)
    - [Wireframes](#wireframes)
    - [Entity Relationship Diagram](#entity-relationship-diagram)
    - [User Interface](#user-interface)
-9. [Technology](#technology)
+10. [Technology](#technology)
    - [Languages](#languages)
    - [Django Packages](#django-packages)
    - [Frameworks, Libraries, and Programs Used](#frameworks-libraries-and-programs-used)
-10. [Testing](#testing)
-11. [Project Creation](#project-creation)
+11. [Testing](#testing)
+12. [Project Creation](#project-creation)
     - [Creating the Django App](#creating-the-django-app)
     - [Deployment of This Project](#deployment-of-this-project)
     - [Final Deployment](#final-deployment)
-12. [Forking This Project](#forking-this-project)
-13. [Cloning This Project](#cloning-this-project)
-14. [Installing This Project](#installing-this-project)
-15. [Credits](#credits)
+13. [Forking This Project](#forking-this-project)
+14. [Cloning This Project](#cloning-this-project)
+15. [Installing This Project](#installing-this-project)
+16. [Credits](#credits)
 
 ---
 
-## User Demographic
+## User Demographics
 
 This app is designed for anyone interested in managing their diet effectively. From fitness enthusiasts tracking macros to health-conscious individuals monitoring calorie intake, this app offers a comprehensive solution for meal tracking and weight management.
 
@@ -126,18 +126,52 @@ This epic prioritises making the site easily navigable with a clean UI. It empha
    - Users can log their meals, including details about protein, carbs, and fats.
    - Users can update or delete meals they've created.
    - Users can view any meals they've created.
+  
+     # Add Meal
+     ![Create Meal](CreateMeal.png)
+  
+     # Update Meal
+     ![Update Meal](UpdateMeal.png)
+
+     # Delete Meal
+     ![Delete Meal](DeleteMeal.png)
+
+     # Meal Details
+     ![View Meals](ViewMeals.png)
+     ![Meal Details](MealDetails.png)
 
 2. **Weight Tracking**:
    - Users can log their weight entries and track progress over time.
    - Users can view, update or delete weight entries.
+  
+     # Add Weight
+     ![Add Weight](WeightAdd.png)
+
+     # Update Weight
+     ![Update Weight](WeightUpdate.png)
+
+     # Delete Weight
+     ![Delete Weight](WeightDelete.png)
+
+     # View Weight
+     ![View Weight](WeightView.png)
 
 3. **User Authentication**:
    - Sign-up and login functionality for secure access to meal and weight tracking.
    - Users are redirected if they try to access restricted pages while not logged in.
 
+     # Log In
+     ![Log In](SignIn.png)
+
+     # Sign Up
+     ![Create an account](SignUp.png)
+
 4. **Dynamic and Adaptable Interface**:
    - The website adapts to all screen sizes, ensuring a smooth experience across devices.
    - Background images adjust for different screen sizes.
+  
+     ![View Weight](WeightView.png)
+     ![View Meals](ViewMeals.png)
 
 5. **User Feedback with Messages**:
    - Users receive messages confirming actions like meal updates, weight tracking entries, or logouts.
@@ -153,7 +187,7 @@ This epic prioritises making the site easily navigable with a clean UI. It empha
 ---
 
 ## Bugs
-- There is a random blue dot appearing on the custom login page message. I haven't been able to find out what's causing this yet, I will fix this later. Plus it kind of suits my website design.
+
 - If using certain extensions in chrome, users may get an error on the meal list page. I don't know what is causing this as something external is causing it however this error does go away if you switch to incognito mode.
 
 ## Design
@@ -170,15 +204,22 @@ The app features a blue and white color scheme for a calm and professional look.
 
 ### Wireframes
 
-Wireframes were designed to visualize user flows and interface layouts.
+Wireframes were designed to visualize user flows and interface layouts. These were created prior to the implementation of the project and some of the layout has since changed and evolved but much of the design is still the same.
+
+![Homepage](WireframeHomepage.png)
+
+![Add Meal](WireframeCreateMeal.png)
+
+![Meal List](WireframeMealList.png)
 
 ### Entity Relationship Diagram
 
 The database supports efficient storage and retrieval of user and meal data.
+![ERD Diagram](ERDdiagram.png)
 
 ### User Interface
 
-The UI prioritizes accessibility and responsiveness for a seamless user experience across all differentr devices.
+The UI prioritizes accessibility and responsiveness for a seamless user experience across all different devices.
 
 ---
 
@@ -216,12 +257,14 @@ The UI prioritizes accessibility and responsiveness for a seamless user experien
 - **W3C HTML**: Validated HTML code using W3C'S HTML validator.
 - **W3C HTML**: Validated CSS code using W3C'S CSS validator.
 - **Chrome Devtools**: Used devtools on google chrome to test website responsiveness and to check for bugs.
+- **Balsamiq**: For Wireframe design
+- **Canva**: For custom image design.
 
 ---
 
 ## Testing
 
-The app underwent extensive manual and automated testing to ensure reliability, usability, and accessibility.
+The app underwent extensive manual and automated testing to ensure reliability, usability, and accessibility. Check out my testing document [here](<https://github.com/chipsandbeans/Django-Final-Project/blob/7ec0546c54c9d73259dfa43fed14ab0b319e16f0/TESTS.md>)
 
 ---
 
@@ -229,21 +272,51 @@ The app underwent extensive manual and automated testing to ensure reliability, 
 
 ### Creating the Django App
 
-1. Install Django and dependencies.
-2. Set up the project and app structure.
-3. Configure settings and database connections.
-4. Implement core features and test locally.
+1. Go to the Code Institute Gitpod Full Template [Template](https://github.com/Code-Institute-Org/gitpod-full-template).
+2. Click "Use This Template".
+3. As soon as the template is available in your repository, click on Gitpod.
+4. When Gitpod and the image for the template are ready, open a new terminal to start a new Django App.
+5. Install Django and gunicorn: `pip3 install django gunicorn`.
+6. Install supporting database libraries: dj_database_url and psycopg2 library: `pip3 install dj_database_url psycopg2`.
+7. Create a file for requirements: in the terminal type `pip freeze --local > requirements.txt`.
+8. Create your project: in the terminal window, type "django-admin startproject your_project_name".
+9. Create your app: in the terminal type "python3 manage.py startapp "app_name".
+10. Add your app to the list of installed apps in settings.py file: "app_name".
+11. Migrate the changes: in the terminal type "python3 manage.py migrate".
+12. Run the server to see if the app is installed. In the terminal window type: "python3 manage.py runserver".
+13. If the app was installed correctly the window will show a message saying "The install worked successfully! Congratulations!".
 
 ### Deployment of This Project
 
-1. Deployed to Heroku using PostgreSQL for database management.
-2. Set environment variables and configure buildpacks.
+1. Log in to [Heroku](https://id.heroku.com). If you don't have an account, create an account.
+2. On the main page click the "New" button in the top right corner. From the drop-down menu, select "Create New App".
+3. You must enter a unique app name.
+4. Select your region.
+5. Click the "Create App" button.
+6. Click in resources and select "Heroku Postgres database".
+7. Click Reveal Config Vars.
+8. Add a new record with SECRET_KEY.
+9. Click Reveal Config Vars.
+10. Add a new record with the `CLOUDINARY_URL`.
+11. Click Reveal Config Vars.
+12. Add a new record with the `DISABLE_COLLECTSTATIC = 1`.
+13. The next page is the project’s Deploy Tab. Click on the Settings Tab and scroll down to Config Vars.
+14. Scroll down to the "Buildpack" section.
+15. Click "Add Buildpack", select python and click "Save Changes".
+16. Go to the top of the page and choose the Deploy tab.
+17. Select Github as the deployment method.
+18. Confirm you want to connect to GitHub.
+19. Search for the repository name and click the "connect" button.
+20. Scroll to the bottom of the deploy page and select the preferred deployment type.
+21. Click either Enable Automatic Deploys for automatic deployment when you push updates to Github or click Manual Deploys if you want to do it manually.
 
 ### Final Deployment
 
-1. Update settings for production deployment.
-2. Remove debug settings and finalize configurations.
-
+1. Create a runtime.txt `python`
+2. Create a Procfile `web: gunicorn project_name.wsgi`
+3. When development is complete change the debug setting to false: `DEBUG = False` in your settings.py file.
+4. If you use the summernote editor add this to settings.py for it to work on Heroku: `X_FRAME_OPTIONS = SAMEORIGIN `.
+5. In Heroku settings, delete the config vars for `DISABLE_COLLECTSTATIC = 1`
 ---
 
 ## Forking This Project
@@ -256,6 +329,7 @@ The app underwent extensive manual and automated testing to ensure reliability, 
 
 ## Cloning This Project
 
+Open up [GitHub]([https://github.com/Tekali7/Costly](https://github.com/chipsandbeans/Django-Final-Project))
 1. Copy the repository URL from GitHub.
 2. Use `git clone <URL>` in your terminal.
 3. Navigate to the cloned directory and set up the project locally.
@@ -300,6 +374,8 @@ To run the Munchy app locally:
 
 - **Django Documentation**: For framework insights and best practices.
 - **Bootstrap Documentation**: For responsive design guidance.
-- **Mentor Guidance**: For UI feedback and guidance when I am stuck on certain issues.
+- **Mentor Guidance**: For UI feedback and guidance when I am stuck on certain errors or bugs..
 - **StackOverflow**: For troubleshooting and debugging tips.
 - **ChatGPT**: For troubleshooting and debugging tips.
+- **Slack**: For troubleshooting and researching.
+- **YouTube**: For research and learning.
