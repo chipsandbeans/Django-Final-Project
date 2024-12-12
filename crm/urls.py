@@ -4,7 +4,7 @@ from django.contrib.auth.views import LoginView
 from django.urls import path, include
 from .views import (
     MealListView, MealDetailView, MealCreateView, MealUpdateView,
-    MealDeleteView, custom_login_message, signup, WeightListView,
+    MealDeleteView, custom_login, signup, WeightListView,
     WeightCreateView, WeightUpdateView, WeightDeleteView,
     CustomLogoutView, CustomLoginView
 )
@@ -13,7 +13,7 @@ from .views import (
 urlpatterns = [
     # path('meals/', views.meal_list, name='meal-list'),
     path('', MealListView.as_view(), name='home'),
-    path('custom-login-message/', custom_login_message, name='custom-login-message'),
+    path('custom-login/', custom_login, name='custom-login'),
     path('signup/', signup, name='signup'),
     path('<int:pk>/', MealDetailView.as_view(), name='meal-detail'),
     path('create/', MealCreateView.as_view(), name='meal-create'),
@@ -29,5 +29,5 @@ urlpatterns = [
     path('my-weight/', WeightListView.as_view(), name='weight_list'),
     path('my-weight/', views.WeightListView.as_view(), name='weight_list'),
     path('add-weight/', WeightCreateView.as_view(), name='add_weight'),
-    path('custom-weight-login-message/', views.custom_weight_login_message, name='custom_weight_login_message'),
+    path('custom-login2/', views.custom_login2, name='custom-login2'),
 ]

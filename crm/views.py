@@ -28,7 +28,7 @@ class MealListView(LoginRequiredMixin, ListView):
     model = Meal
     template_name = 'crm/meal_list.html'
     context_object_name = 'meals'
-    login_url = reverse_lazy('custom-login-message')
+    login_url = reverse_lazy('custom-login')
 
     def get_queryset(self):
         return Meal.objects.filter(user=self.request.user)
@@ -105,8 +105,8 @@ def not_logged_in(user):
 
 
 @user_passes_test(not_logged_in, login_url='home')
-def custom_login_message(request):
-    return render(request, 'crm/custom_login_message.html')
+def custom_login(request):
+    return render(request, 'crm/custom_login.html')
 
 
 def not_logged_in(user):
@@ -140,7 +140,7 @@ class WeightCreateView(LoginRequiredMixin, CreateView):
 
 
 # Weight List for logged in users
-@method_decorator(login_required(login_url='/custom-weight-login-message/'), name='dispatch')
+@method_decorator(login_required(login_url='/custom-login2/'), name='dispatch')
 class WeightListView(View):
     def get(self, request):
         weights = WeightTracking.objects.filter(user=request.user)
@@ -152,8 +152,8 @@ def not_logged_in(user):
 
 
 @user_passes_test(not_logged_in, login_url='weight_list')
-def custom_weight_login_message(request):
-    return render(request, 'custom_weight_login_message.html')
+def custom_login2(request):
+    return render(request, 'customlogin2.html')
 
 
 # Update Weight
