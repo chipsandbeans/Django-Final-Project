@@ -29,10 +29,21 @@ The [W3C Validator](https://validator.w3.org/) was used to validate HTML files. 
 | **File**            | **Result** |
 |----------------------|------------|
 | base.html           |    |
-| custom_login.html   |    |
-| index.html          |    |
-| add_meal.html       |    |
-| edit_meal.html      | &#10004;   |
+| custom_login_message.html   |&#10004;    |
+| custom_weight_login_message.html   |&#10004;    |
+| meal_list.html          |&#10004;   |
+| meal_form.html     |&#10004;    |
+| update_meal.html      |&#10004;    |
+| meal_confirm_delete.html |&#10004;     |
+| meal_detail.html      |&#10004;    |
+| weight_list.html  |&#10004;    |
+| add_weight.html        |&#10004;   |
+| update_weight.html        |&#10004;   |
+| delete_weight.html   |&#10004;    |
+| 403.html          |&#10004;   |
+| login.html       |&#10004;    |
+| logout.html      |    |
+| signup.html      |    |
 
 ---
 
