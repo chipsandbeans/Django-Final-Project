@@ -29,7 +29,6 @@ This Meal Tracking App helps users maintain a record of their meals and nutritio
 8. [Bugs](#bugs)
 9. [Design](#design)
    - [Color](#color)
-   - [Typography](#typography)
    - [Wireframes](#wireframes)
    - [Entity Relationship Diagram](#entity-relationship-diagram)
    - [User Interface](#user-interface)
@@ -64,6 +63,10 @@ As a user, I want to be able to:
 - View a list of meals with nutritional breakdowns and total calories.
 - Edit or update my meal details.
 - Delete meals when necessary.
+- Add weight in either kilograms or pounds.
+- View a list of weight entries with their value in kilograms or pounds.
+- Edit or update my weight details.
+- Delete weight entries when necessary.
 - Ensure that my data remains private and secure.
 
 ---
@@ -170,11 +173,14 @@ This epic prioritises making the site easily navigable with a clean UI. It empha
    - The website adapts to all screen sizes, ensuring a smooth experience across devices.
    - Background images adjust for different screen sizes.
   
-     ![View Weight](WeightView.png)
-     ![View Meals](ViewMeals.png)
+     ![Responsiveness Preview](responsive-preview.png)
+
 
 5. **User Feedback with Messages**:
    - Users receive messages confirming actions like meal updates, weight tracking entries, or logouts.
+
+    ![Meal Edited Message](MealMessage.png)
+    ![Weight Deleted Message](WeightMessage.png)
 
 ---
 
@@ -196,11 +202,6 @@ This epic prioritises making the site easily navigable with a clean UI. It empha
 
 The app features a blue and white color scheme for a calm and professional look.
 
-### Typography
-
-- **App Name:** Modern sans-serif font.
-- **Titles:** 'Franklin Gothic Medium'.
-- **Body:** Clean, legible sans-serif fonts.
 
 ### Wireframes
 
