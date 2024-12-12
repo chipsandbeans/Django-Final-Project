@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Meal
+from .models import Meal, WeightTracking
 from django_summernote.admin import SummernoteModelAdmin
 
 @admin.register(Meal)
@@ -9,4 +9,11 @@ class MealAdmin(SummernoteModelAdmin):
     search_fields = ['title']
     list_filter = ('meal_time',)
     summernote_fields = ('content',)
-# Register your models here.
+
+admin.site.register(WeightTracking)
+class Weight(SummernoteModelAdmin):
+    list_display = ('user', 'weight', 'date')
+    list_filter = ['date',]
+    summernote_fields = ('content',)
+
+    
