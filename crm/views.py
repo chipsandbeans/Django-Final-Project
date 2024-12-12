@@ -5,7 +5,14 @@ from django.views import View
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import user_passes_test
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+    FormView
+)
 from django.contrib.auth.views import LogoutView, LoginView
 from django.contrib import messages
 from django.contrib.auth import logout
@@ -15,15 +22,17 @@ from .models import Meal, WeightTracking
 from .forms import WeightTrackingForm
 from django.contrib.messages.views import SuccessMessageMixin
 
+
 # View Meal List
 class MealListView(LoginRequiredMixin, ListView):
-    model = Meal 
+    model = Meal
     template_name = 'crm/meal_list.html'
     context_object_name = 'meals'
     login_url = reverse_lazy('custom-login-message')
 
     def get_queryset(self):
         return Meal.objects.filter(user=self.request.user)
+
 
 # View Meal Details
 class MealDetailView(DetailView):
@@ -37,6 +46,7 @@ class MealDetailView(DetailView):
             raise PermissionDenied("You are not authorized to view this meal.")
         return obj
 
+
 # Create Meals
 class MealCreateView(CreateView):
     model = Meal
@@ -45,9 +55,10 @@ class MealCreateView(CreateView):
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
-        form.instance.user = self.request.user 
+        form.instance.user = self.request.user
         messages.success(self.request, 'Meal created successfully!')
         return super().form_valid(form)
+
 
 # Update Meals
 class MealUpdateView(UpdateView):
@@ -55,14 +66,15 @@ class MealUpdateView(UpdateView):
     template_name = 'crm/update_meal.html'
     fields = ['title', 'protein', 'carbs', 'fats']
     success_url = reverse_lazy('home')
-    
-    # Makes sure only the meal creator can update the meal
+
+# Makes sure only the meal creator can update the meal
+
     def get_object(self, queryset=None):
         obj = super().get_object(queryset)
         if obj.user != self.request.user:
-            raise PermissionDenied("You are not authorized to update this meal.")
+            raise PermissionDenied("You are not authorized to update this.")
         return obj
-    
+
     # Adds a message after the meal is updated
     def form_valid(self, form):
         messages.success(self.request, 'Meal updated successfully.')
@@ -71,6 +83,7 @@ class MealUpdateView(UpdateView):
     # Redirects to the meal detail page
     def get_success_url(self):
         return reverse_lazy('meal-detail', kwargs={'pk': self.object.pk})
+
 
 # Meal Delete View
 class MealDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
@@ -82,19 +95,23 @@ class MealDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     def get_object(self, queryset=None):
         obj = super().get_object(queryset)
         if obj.user != self.request.user:
-            raise PermissionDenied("You are not authorized to delete this meal.")
+            raise PermissionDenied("You are not authorized to delete this.")
         return obj
+
 
 # Custom Log In page for users who are not signed in
 def not_logged_in(user):
     return not user.is_authenticated
 
+
 @user_passes_test(not_logged_in, login_url='home')
 def custom_login_message(request):
     return render(request, 'crm/custom_login_message.html')
 
+
 def not_logged_in(user):
     return not user.is_authenticated
+
 
 # Signup for logged out users
 @user_passes_test(not_logged_in, login_url='home')
@@ -108,6 +125,7 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
 
+
 # Create a Weight Entry
 class WeightCreateView(LoginRequiredMixin, CreateView):
     model = WeightTracking
@@ -120,6 +138,7 @@ class WeightCreateView(LoginRequiredMixin, CreateView):
         messages.success(self.request, 'Weight added successfully!')
         return super().form_valid(form)
 
+
 # Weight List for logged in users
 @method_decorator(login_required(login_url='/custom-weight-login-message/'), name='dispatch')
 class WeightListView(View):
@@ -127,12 +146,15 @@ class WeightListView(View):
         weights = WeightTracking.objects.filter(user=request.user)
         return render(request, 'weight_list.html', {'weights': weights})
 
+
 def not_logged_in(user):
     return not user.is_authenticated
+
 
 @user_passes_test(not_logged_in, login_url='weight_list')
 def custom_weight_login_message(request):
     return render(request, 'custom_weight_login_message.html')
+
 
 # Update Weight
 @method_decorator(login_required, name='dispatch')
@@ -153,6 +175,7 @@ class WeightUpdateView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy('weight_list')
 
+
 # Delete Weight Entry
 class WeightDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = WeightTracking
@@ -171,11 +194,12 @@ class CustomLogoutView(LogoutView):
         messages.success(request, "You have been successfully logged out.")
         return response
 
+
 # Custom Login View that redirects logged in users to the meal list
 class CustomLoginView(LoginView):
     template_name = 'registration/login.html'
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect('home') 
+            return redirect('home')
         return super().dispatch(request, *args, **kwargs)

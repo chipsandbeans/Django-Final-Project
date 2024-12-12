@@ -2,7 +2,13 @@ from . import views
 from django.contrib import admin
 from django.contrib.auth.views import LoginView
 from django.urls import path, include
-from .views import (MealListView, MealDetailView, MealCreateView, MealUpdateView, MealDeleteView, custom_login_message, signup, WeightListView, WeightCreateView, WeightUpdateView, WeightDeleteView, CustomLogoutView, CustomLoginView)
+from .views import (
+    MealListView, MealDetailView, MealCreateView, MealUpdateView,
+    MealDeleteView, custom_login_message, signup, WeightListView,
+    WeightCreateView, WeightUpdateView, WeightDeleteView,
+    CustomLogoutView, CustomLoginView
+)
+
 
 urlpatterns = [
     # path('meals/', views.meal_list, name='meal-list'),
