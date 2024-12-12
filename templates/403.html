@@ -1,20 +1,10 @@
 {% extends "base.html" %}
 
+{% block title %}Access Denied{% endblock %}
+
 {% block content %}
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Access Denied</title>
-</head>
-<body>
-    <h1>403 Forbidden</h1>
-    <p>{{ exception }}</p>
-</body>
-</html>
-
-{% endblock %}
-
-{% block copyright %}
-Copyright 2024 Bryan Murphy
+<div class="container text-center py-5">
+    <h1 class="display-4 text-danger">403 Forbidden</h1>
+    <p class="lead">{{ exception }}</p>
+</div>
 {% endblock %}
