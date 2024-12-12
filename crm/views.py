@@ -52,7 +52,7 @@ class MealCreateView(CreateView):
 # Update Meals
 class MealUpdateView(UpdateView):
     model = Meal
-    template_name = 'crm/meal_form.html'
+    template_name = 'crm/update_meal.html'
     fields = ['title', 'protein', 'carbs', 'fats']
     success_url = reverse_lazy('home')
     
