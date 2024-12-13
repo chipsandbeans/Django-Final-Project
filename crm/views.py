@@ -68,9 +68,9 @@ class MealUpdateView(UpdateView):
     fields = ['title', 'protein', 'carbs', 'fats']
     success_url = reverse_lazy('home')
 
-
-def get_object(self, queryset=None):
-    obj = super().get_object(queryset)
+# Makes sure only the meal creator can update the meal
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
     if obj.user != self.request.user:
         raise PermissionDenied("You are not authorized to update this.")
     return obj
@@ -193,6 +193,17 @@ class CustomLogoutView(LogoutView):
         response = super().dispatch(request, *args, **kwargs)
         messages.success(request, "You have been successfully logged out.")
         return response
+
+
+# Custom Login View that redirects logged in users to the meal list
+# class CustomLoginView(SuccessMessageMixin, LoginView):
+#     template_name = 'registration/login.html'
+
+#     def dispatch(self, request, *args, **kwargs):
+#         if request.user.is_authenticated:
+#             messages.success(request, "Thanks for logging in!")
+#             return redirect('home')
+#         return super().dispatch(request, *args, **kwargs)
 
 
 class CustomLoginView(LoginView):
