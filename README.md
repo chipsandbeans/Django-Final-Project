@@ -1,6 +1,6 @@
 # Munchy - The Meal Tracking App
 
-![Munchy Logo](munchybackground(2).png)
+![Munchy Logo](static/images/munchybackground(2).png)
 
 ### Link to the deployed project:
 ## [Munchy Deployed Link](https://my-frenly-pt-eb54dfd3fc9e.herokuapp.com/)
@@ -131,56 +131,56 @@ This epic prioritises making the site easily navigable with a clean UI. It empha
    - Users can view any meals they've created.
   
      # Add Meal
-     ![Create Meal](CreateMeal.png)
+     ![Create Meal](static/images/CreateMeal.png)
   
      # Update Meal
-     ![Update Meal](UpdateMeal.png)
+     ![Update Meal](static/images/UpdateMeal.png)
 
      # Delete Meal
-     ![Delete Meal](DeleteMeal.png)
+     ![Delete Meal](static/images/DeleteMeal.png)
 
      # Meal Details
-     ![View Meals](ViewMeals.png)
-     ![Meal Details](MealDetails.png)
+     ![View Meals](static/images/ViewMeals.png)
+     ![Meal Details](static/images/MealDetails.png)
 
 2. **Weight Tracking**:
    - Users can log their weight entries and track progress over time.
    - Users can view, update or delete weight entries.
   
      # Add Weight
-     ![Add Weight](WeightAdd.png)
+     ![Add Weight](static/images/WeightAdd.png)
 
      # Update Weight
-     ![Update Weight](WeightUpdate.png)
+     ![Update Weight](static/images/WeightUpdate.png)
 
      # Delete Weight
-     ![Delete Weight](WeightDelete.png)
+     ![Delete Weight](static/images/WeightDelete.png)
 
      # View Weight
-     ![View Weight](WeightView.png)
+     ![View Weight](static/images/WeightView.png)
 
 3. **User Authentication**:
    - Sign-up and login functionality for secure access to meal and weight tracking.
    - Users are redirected if they try to access restricted pages while not logged in.
 
      # Log In
-     ![Log In](SignIn.png)
+     ![Log In](static/images/SignIn.png)
 
      # Sign Up
-     ![Create an account](SignUp.png)
+     ![Create an account](static/images/SignUp.png)
 
 4. **Dynamic and Adaptable Interface**:
    - The website adapts to all screen sizes, ensuring a smooth experience across devices.
    - Background images adjust for different screen sizes.
   
-     ![Responsiveness Preview](responsive-preview.png)
+     ![Responsiveness Preview](static/images/responsive-preview.png)
 
 
 5. **User Feedback with Messages**:
    - Users receive messages confirming actions like meal updates, weight tracking entries, or logouts.
 
-    ![Meal Edited Message](MealMessage.png)
-    ![Weight Deleted Message](WeightMessage.png)
+    ![Meal Edited Message](static/images/MealMessage.png)
+    ![Weight Deleted Message](static/images/WeightMessage.png)
 
 ---
 
@@ -207,16 +207,16 @@ The app features a blue and white color scheme for a calm and professional look.
 
 Wireframes were designed to visualize user flows and interface layouts. These were created prior to the implementation of the project and some of the layout has since changed and evolved but much of the design is still the same.
 
-![Homepage](WireframeHomepage.png)
+![Homepage](static/images/WireframeHomepage.png)
 
-![Add Meal](WireframeCreateMeal.png)
+![Add Meal](static/images/WireframeCreateMeal.png)
 
-![Meal List](WireframeMealList.png)
+![Meal List](static/images/WireframeMealList.png)
 
 ### Entity Relationship Diagram
 
 The database supports efficient storage and retrieval of user and meal data.
-![ERD Diagram](ERDdiagram.png)
+![ERD Diagram](static/images/ERDdiagram.png)
 
 ### User Interface
 
@@ -330,7 +330,7 @@ The app underwent extensive manual and automated testing to ensure reliability, 
 
 ## Cloning This Project
 
-Open up [GitHub]([https://github.com/Tekali7/Costly](https://github.com/chipsandbeans/Django-Final-Project))
+Open up [GitHub]([https://github.com/chipsandbeans/Django-Final-Project])
 1. Copy the repository URL from GitHub.
 2. Use `git clone <URL>` in your terminal.
 3. Navigate to the cloned directory and set up the project locally.

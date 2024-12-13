@@ -176,3 +176,4 @@ Lighthouse was used to evaluate performance, accessibility, best practices, and 
 | SEO               |       |
 
 ---
+![Page Performance](static/images/PagePerformance.png)
