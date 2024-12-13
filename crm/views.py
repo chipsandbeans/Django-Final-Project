@@ -68,13 +68,12 @@ class MealUpdateView(UpdateView):
     fields = ['title', 'protein', 'carbs', 'fats']
     success_url = reverse_lazy('home')
 
-# Makes sure only the meal creator can update the meal
 
-    def get_object(self, queryset=None):
-        obj = super().get_object(queryset)
-        if obj.user != self.request.user:
-            raise PermissionDenied("You are not authorized to update this.")
-        return obj
+def get_object(self, queryset=None):
+    obj = super().get_object(queryset)
+    if obj.user != self.request.user:
+        raise PermissionDenied("You are not authorized to update this.")
+    return obj
 
     # Adds a message after the meal is updated
     def form_valid(self, form):
@@ -196,17 +195,34 @@ class CustomLogoutView(LogoutView):
         return response
 
 
-# Custom Login View that redirects logged in users to the meal list
 class CustomLoginView(LoginView):
     template_name = 'registration/login.html'
 
     def dispatch(self, request, *args, **kwargs):
+        print("dispatch called")
         if request.user.is_authenticated:
+            print("user is authenticated")
+            messages.success(request, "Thanks for logging in!")
             return redirect('home')
+        print("user is not authenticated.")
         return super().dispatch(request, *args, **kwargs)
 
+    def get(self, request, *args, **kwargs):
+        print("GET method called")
+        return super().get(request, *args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        print("POST method called")
+        return super().get(request, *args, **kwargs)
 
 # Custom Logout View
-class LogoutConfirmationView(TemplateView):
+    class LogoutConfirmationView(SuccessMessageMixin, TemplateView):
+        template_name = 'registration/logout.html'
 
-    template_name = 'registration/logout.html'
+    def post(self, request, *args, **kwargs):
+        response = LogoutView.as_view()(request)
+        messages.success(request, "You have been successfully logged out.")
+        return response
+
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
