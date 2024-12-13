@@ -11,7 +11,8 @@ from django.views.generic import (
     CreateView,
     UpdateView,
     DeleteView,
-    FormView
+    FormView,
+    TemplateView
 )
 from django.contrib.auth.views import LogoutView, LoginView
 from django.contrib import messages
@@ -203,3 +204,8 @@ class CustomLoginView(LoginView):
         if request.user.is_authenticated:
             return redirect('home')
         return super().dispatch(request, *args, **kwargs)
+
+
+# Custom Logout View 
+class LogoutConfirmationView(TemplateView):
+    template_name = 'registration/logout.html'
