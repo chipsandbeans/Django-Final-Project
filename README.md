@@ -195,6 +195,7 @@ This epic prioritises making the site easily navigable with a clean UI. It empha
 ## Bugs
 
 - If using certain extensions in chrome, users may get an error on the meal list page. I don't know what is causing this as something external is causing it however this error does go away if you switch to incognito mode.
+- There's a HTML validation error on the signup page. This is to do with assets I've installed not my own code.
 
 ## Design
 
