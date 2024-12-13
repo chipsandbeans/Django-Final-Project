@@ -41,6 +41,7 @@ The [W3C Validator](https://validator.w3.org/) was used to validate HTML files. 
 | update_weight.html        |&#10004;   |
 | delete_weight.html   |&#10004;    |
 | 403.html          |&#10004;   |
+| about_us.html          |&#10004;   |
 | login.html       |&#10004;    |
 | logout.html      |    |
 | signup.html      |    |
@@ -93,6 +94,12 @@ The [CI Python Linter](https://pep8ci.herokuapp.com/) was used to validate Pytho
 | myproject        | models.py        |&#10004;   |
 | myproject        | urls.py          | &#10004;   |
 | myproject         | views.py         | &#10004;   |
+| about_us          | apps.py         | &#10004;   |
+| about_us        | admin.py         |  &#10004;  |
+| about_us         | tests.py         | &#10004;   |
+| about_us        | models.py        |&#10004;   |
+| about_us        | urls.py          | &#10004;   |
+| about_us         | views.py         | &#10004;   |
 
 ---
 
@@ -103,7 +110,7 @@ The [CI Python Linter](https://pep8ci.herokuapp.com/) was used to validate Pytho
 | **Test**                          | **Expected Outcome**                            | **Result** |
 |-----------------------------------|------------------------------------------------|------------|
 | Navigate to the home page         | Displays the user's meal list and dashboard.  | &#10004;   |
-| Click the "Logout" button         | User is logged out and redirected to the login page. | &#10004;   |
+| Click the "Logout" button         | User is logged out and redirected to the custom login page. | &#10004;   |
 
 ---
 
@@ -111,7 +118,7 @@ The [CI Python Linter](https://pep8ci.herokuapp.com/) was used to validate Pytho
 
 | **Test**                                | **Expected Outcome**                           | **Result** |
 |-----------------------------------------|-----------------------------------------------|------------|
-| Attempt to access meals pages           | Redirected to the login page.                | &#10004;   |
+| Attempt to access meal detail pages           | Redirected to error 403 page.                | &#10004;   |
 | Access "Login" and "Sign Up" links      | Redirects to the appropriate authentication forms. | &#10004;   |
 
 ---
