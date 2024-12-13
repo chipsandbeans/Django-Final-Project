@@ -12,6 +12,7 @@
 <head>
     <title>{% block title %}Munchy{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Track your weight and log your meals with Munchy!.">
 
     <!-- Google Fonts for consistent typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,8 +75,8 @@
         <p class="m-0">You are logged in as <strong>{{ user.username }}</strong>.</p>
         {% else %}
         <p class="m-0">You are logged out. Please <a href="{% url 'login' %}"
-                class="text-primary text-decoration-underline">log in</a> or
-            <a href="{% url 'signup' %}" class="text-primary text-decoration-underline">sign up</a> to access
+                class="text-black text-decoration-underline" aria-label="Log in to Munchy">log in</a> or
+            <a href="{% url 'signup' %}" class="text-black text-decoration-underline" aria-label="Sign up to Munchy">sign up</a> to access
             <strong>Munchy</strong>.
         </p>
         {% endif %}
@@ -109,13 +110,13 @@
                 {% endblock %}
             </p>
             <p>
-                Follow us:
-                <a href="https://facebook.com" class="text-white ms-2" target="_blank"><i
-                        class="fab fa-facebook-square"></i></a>
-                <a href="https://twitter.com" class="text-white ms-2" target="_blank"><i
-                        class="fab fa-twitter-square"></i></a>
-                <a href="https://instagram.com" class="text-white ms-2" target="_blank"><i
-                        class="fab fa-instagram-square"></i></a>
+                Follow us on:
+                <a href="https://facebook.com" class="text-white ms-2" target="_blank"
+                    aria-label="Follow us on Facebook"><i class="fab fa-facebook-square"></i></a>
+                <a href="https://twitter.com" class="text-white ms-2" target="_blank"
+                    aria-label="Follow us on Twitter"><i class="fab fa-twitter-square"></i></a>
+                <a href="https://instagram.com" class="text-white ms-2" target="_blank"
+                    aria-label="Follow us on Instagram"><i class="fab fa-instagram-square"></i></a>
             </p>
         </div>
     </footer>
