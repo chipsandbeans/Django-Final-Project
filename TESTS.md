@@ -43,8 +43,8 @@ The [W3C Validator](https://validator.w3.org/) was used to validate HTML files. 
 | 403.html          |&#10004;   |
 | about_us.html          |&#10004;   |
 | login.html       |&#10004;    |
-| logout.html      |    |
-| signup.html      |    |
+| logout.html      |&#10004;     |
+| signup.html      | error   |
 
 ---
 
@@ -68,7 +68,7 @@ The [JSHint](https://jshint.com/) tool was used for JavaScript validation.
 |-----------------|------------|
 | scripts.js     | &#10004;   |
 
-Warnings for ES6 features and undefined variables due to libraries (e.g., Bootstrap) were ignored as they do not affect functionality.
+Warnings for ES6 features and undefined variables due to libraries (e.g., Bootstrap) are ignored as they do not affect functionality.
 
 ---
 
@@ -112,6 +112,8 @@ The [CI Python Linter](https://pep8ci.herokuapp.com/) was used to validate Pytho
 | Navigate to the home page         | Displays the user's meal list and dashboard.  | &#10004;   |
 | Click the "Logout" button         | User is logged out and redirected to the custom login page. | &#10004;   |
 
+![Meal List](static/images/ViewMeals.png)
+
 ---
 
 ## Test Navigation when Not Logged In
@@ -122,6 +124,7 @@ The [CI Python Linter](https://pep8ci.herokuapp.com/) was used to validate Pytho
 | Access "Login" and "Sign Up" links      | Redirects to the appropriate authentication forms. | &#10004;   |
 
 ---
+![403 error](static/images/403.png)
 
 ## Test Meal Actions
 
@@ -133,6 +136,7 @@ The [CI Python Linter](https://pep8ci.herokuapp.com/) was used to validate Pytho
 | Submit valid meal data                   | Meal is added to the database and listed on the dashboard. | &#10004;   |
 | Submit invalid meal data                 | Displays validation errors.                  | &#10004;   |
 
+![Add Meal](static/images/CreateMeal.png)
 ---
 
 ### Edit Meal
@@ -142,6 +146,8 @@ The [CI Python Linter](https://pep8ci.herokuapp.com/) was used to validate Pytho
 | Open the "Edit Meal" form                | Form pre-populated with meal details.         | &#10004;   |
 | Modify and save valid data               | Updates the meal in the database.            | &#10004;   |
 
+![Update Meal](static/images/UpdateMeal.png)
+
 ---
 
 ### Delete Meal
@@ -150,6 +156,8 @@ The [CI Python Linter](https://pep8ci.herokuapp.com/) was used to validate Pytho
 |------------------------------------------|-----------------------------------------------|------------|
 | Click the "Delete" button for a meal     | Prompts for confirmation.                    | &#10004;   |
 | Confirm deletion                         | Meal is removed from the database.           | &#10004;   |
+
+![Delete Meal](static/images/DeleteMeal.png)
 
 ---
 
@@ -170,10 +178,10 @@ Lighthouse was used to evaluate performance, accessibility, best practices, and 
 
 | **Metric**       | **Score** |
 |-------------------|-----------|
-| Performance       |        |
-| Accessibility     |        |
-| Best Practices    |       |
-| SEO               |       |
+| Performance       |   100%    |
+| Accessibility     |   100%     |
+| Best Practices    |    100%   |
+| SEO               |   100%    |
 
 ---
 ![Page Performance](static/images/PagePerformance.png)
