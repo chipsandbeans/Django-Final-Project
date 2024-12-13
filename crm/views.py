@@ -206,6 +206,7 @@ class CustomLoginView(LoginView):
         return super().dispatch(request, *args, **kwargs)
 
 
-# Custom Logout View 
+# Custom Logout View
 class LogoutConfirmationView(TemplateView):
+
     template_name = 'registration/logout.html'
