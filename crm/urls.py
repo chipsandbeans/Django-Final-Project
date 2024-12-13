@@ -23,10 +23,10 @@ urlpatterns = [
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', CustomLogoutView.as_view(), name='logout'),
     path(
-    'logout-confirmation/', 
-    LogoutConfirmationView.as_view(), 
-    name='logout_confirmation'
-),
+        'logout-confirmation/',
+        LogoutConfirmationView.as_view(),
+        name='logout_confirmation'
+    ),
     path('weights/', views.WeightListView.as_view(), name='weight_list'),
     path('weight/add/', WeightCreateView.as_view(), name='create_weight'),
     path(
