@@ -77,14 +77,22 @@ The [CI Python Linter](https://pep8ci.herokuapp.com/) was used to validate Pytho
 
 | **App**      | **File**         | **Result** |
 |--------------|------------------|------------|
-| crm          | settings.py      |    |
-| crm          | urls.py          |    |
-| crm          | views.py         |    |
-| crm        | admin.py         |    |
-| crm        | forms.py         |    |
-| crm        | models.py        |   |
-| crm        | urls.py          |    |
-| crm        | views.py         |    |
+| crm          | settings.py      | &#10004;   |
+| crm          | urls.py          | &#10004;   |
+| crm          | views.py         | &#10004;   |
+| crm        | admin.py         |  &#10004;  |
+| crm        | forms.py         | &#10004;   |
+| crm        | models.py        |&#10004;   |
+| crm        | urls.py          | &#10004;   |
+| crm        | views.py         | &#10004;   |
+| myproject          | settings.py      | &#10004;   |
+| myproject           | urls.py          | &#10004;   |
+| myproject          | wsgi.py         | &#10004;   |
+| myproject        | admin.py         |  &#10004;  |
+| myproject         | forms.py         | &#10004;   |
+| myproject        | models.py        |&#10004;   |
+| myproject        | urls.py          | &#10004;   |
+| myproject         | views.py         | &#10004;   |
 
 ---
 

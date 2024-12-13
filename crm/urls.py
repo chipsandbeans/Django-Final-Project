@@ -24,9 +24,16 @@ urlpatterns = [
     path('logout/', CustomLogoutView.as_view(), name='logout'),
     path('weights/', views.WeightListView.as_view(), name='weight_list'),
     path('weight/add/', WeightCreateView.as_view(), name='create_weight'),
-    path('weight/update/<int:pk>/', views.WeightUpdateView.as_view(), name='weight_update'),
-    path('weight/delete/<int:pk>/', views.WeightDeleteView.as_view(), name='weight_delete'),
-    path('my-weight/', WeightListView.as_view(), name='weight_list'),
+    path(
+        'weight/update/<int:pk>/',
+        views.WeightUpdateView.as_view(),
+        name='weight_update'
+        ),
+    path(
+        'weight/delete/<int:pk>/',
+        views.WeightDeleteView.as_view(),
+        name='weight_delete'
+    ),
     path('my-weight/', views.WeightListView.as_view(), name='weight_list'),
     path('add-weight/', WeightCreateView.as_view(), name='add_weight'),
     path('custom-login2/', views.custom_login2, name='custom-login2'),
